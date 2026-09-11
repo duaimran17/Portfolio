@@ -71,6 +71,7 @@ export const projects = [
     image: null,
     images: [],
     videoUrl: "/video/demo.mp4",
+    videoCoverUrl: "/images/web.png",
     githubUrl: "https://github.com/duaimran17/cohort-9-mern-7066-dua",
     liveUrl: null,
     featured: true,

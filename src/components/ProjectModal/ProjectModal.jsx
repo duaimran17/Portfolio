@@ -13,11 +13,13 @@ import './ProjectModal.css';
  */
 export default function ProjectModal({ project, onClose }) {
   const [activeSlide, setActiveSlide] = useState(0);
+  const [counterVisible, setCounterVisible] = useState(false);
   const [prevProjectId, setPrevProjectId] = useState(project?.id);
 
   if (project?.id !== prevProjectId) {
     setPrevProjectId(project?.id);
     setActiveSlide(0);
+    setCounterVisible(false);
   }
 
   // Close on Escape key
@@ -99,7 +101,7 @@ export default function ProjectModal({ project, onClose }) {
                         <button
                           type="button"
                           className="modal__gallery-nav modal__gallery-nav--prev"
-                          onClick={() => setActiveSlide((prev) => (prev === 0 ? images.length - 1 : prev - 1))}
+                          onClick={() => { setActiveSlide((prev) => (prev === 0 ? images.length - 1 : prev - 1)); setCounterVisible(true); }}
                           aria-label="Previous image"
                         >
                           <ChevronLeft size={22} />
@@ -107,14 +109,16 @@ export default function ProjectModal({ project, onClose }) {
                         <button
                           type="button"
                           className="modal__gallery-nav modal__gallery-nav--next"
-                          onClick={() => setActiveSlide((prev) => (prev === images.length - 1 ? 0 : prev + 1))}
+                          onClick={() => { setActiveSlide((prev) => (prev === images.length - 1 ? 0 : prev + 1)); setCounterVisible(true); }}
                           aria-label="Next image"
                         >
                           <ChevronRight size={22} />
                         </button>
-                        <div className="modal__gallery-counter">
-                          {activeSlide + 1} / {images.length}
-                        </div>
+                        {counterVisible && (
+                          <div className="modal__gallery-counter">
+                            {activeSlide + 1} / {images.length}
+                          </div>
+                        )}
                         <div className="modal__gallery-dots">
                           {images.map((_, i) => (
                             <button

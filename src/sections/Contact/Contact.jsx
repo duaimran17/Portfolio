@@ -57,8 +57,7 @@ export default function Contact() {
             transition={{ duration: 0.45 }}
           >
             <p className="contact__intro">
-              The best way to reach me is directly via email or LinkedIn. I am always excited to connect
-              regarding software development opportunities, AI projects, or campus initiatives.
+              Have a project in mind, want to collaborate, or just want to say hi? I&apos;d love to hear from you.
             </p>
 
             <div className="contact__links">

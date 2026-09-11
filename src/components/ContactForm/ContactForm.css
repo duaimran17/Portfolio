@@ -74,8 +74,8 @@
   font-size: 0.92rem;
 }
 
-/* ─── Honest Validated State ─── */
-.contact-form__validated-state {
+/* ─── Success State ─── */
+.contact-form__success-state {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -83,57 +83,82 @@
   gap: 0.85rem;
   padding: 2.5rem 1.5rem;
   background: var(--bg-surface);
-  border: 1px solid var(--border-color);
+  border: 1px solid rgba(16, 185, 129, 0.25);
   border-radius: var(--radius-md);
   box-shadow: var(--card-shadow);
 }
 
-.contact-form__info-badge {
-  width: 54px;
-  height: 54px;
+.contact-form__success-icon-wrap {
+  width: 58px;
+  height: 58px;
   border-radius: 50%;
-  background: rgba(124, 58, 237, 0.08);
+  background: rgba(16, 185, 129, 0.1);
   display: flex;
   align-items: center;
   justify-content: center;
-  color: var(--accent-primary);
+  color: #10b981;
 }
 
-.contact-form__validated-title {
+.contact-form__success-icon {
+  color: #10b981;
+}
+
+.contact-form__success-title {
   font-size: 1.3rem;
   font-weight: 700;
   color: var(--text-primary);
 }
 
-.contact-form__validated-text {
+.contact-form__success-text {
   font-size: 0.9rem;
   color: var(--text-secondary);
-  max-width: 420px;
+  max-width: 380px;
   line-height: 1.6;
 }
 
-.contact-form__validated-actions {
-  display: flex;
-  gap: 0.75rem;
-  flex-wrap: wrap;
-  justify-content: center;
-  margin-top: 0.5rem;
-}
-
-.contact-form__mailto-btn {
+.contact-form__reset-btn {
   font-size: 0.88rem;
   padding: 0.65rem 1.4rem;
+  margin-top: 0.25rem;
 }
 
-.contact-form__edit-btn {
-  font-size: 0.88rem;
-  padding: 0.65rem 1.2rem;
+/* ─── Server Error ─── */
+.contact-form__server-error {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.84rem;
+  font-weight: 500;
+  color: #ef4444;
+  background: rgba(239, 68, 68, 0.07);
+  border: 1px solid rgba(239, 68, 68, 0.2);
+  border-radius: var(--radius-sm);
+  padding: 0.65rem 0.9rem;
+}
+
+/* ─── Loading Spinner ─── */
+.contact-form__spinner {
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  border: 2px solid rgba(255, 255, 255, 0.35);
+  border-top-color: #fff;
+  border-radius: 50%;
+  animation: cf-spin 0.65s linear infinite;
+}
+
+@keyframes cf-spin {
+  to { transform: rotate(360deg); }
+}
+
+.contact-form__submit:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
 }
 
 @media (max-width: 640px) {
   .contact-form__row { grid-template-columns: 1fr; }
   .contact-form__submit { width: 100%; justify-content: center; }
-  .contact-form__validated-actions { width: 100%; flex-direction: column; }
-  .contact-form__mailto-btn,
-  .contact-form__edit-btn { width: 100%; justify-content: center; }
+  .contact-form__reset-btn { width: 100%; justify-content: center; }
 }
+

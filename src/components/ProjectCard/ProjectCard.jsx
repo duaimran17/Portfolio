@@ -1,7 +1,7 @@
 // src/components/ProjectCard/ProjectCard.jsx
 import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { ArrowUpRight, FolderGit2, ChevronLeft, ChevronRight } from 'lucide-react';
+import { ArrowUpRight, FolderGit2, ChevronLeft, ChevronRight, Play } from 'lucide-react';
 import { Github } from '../Icons';
 import './ProjectCard.css';
 
@@ -18,6 +18,7 @@ export default function ProjectCard({ project, onClick, index = 0 }) {
     image,
     images,
     videoUrl,
+    videoCoverUrl,
     categoryTag,
     githubUrl,
     company,
@@ -25,16 +26,20 @@ export default function ProjectCard({ project, onClick, index = 0 }) {
   } = project;
 
   const [currentImg, setCurrentImg] = useState(0);
+  const [showVideo, setShowVideo] = useState(false);
+  const [counterVisible, setCounterVisible] = useState(false);
   const mediaImages = images && images.length > 0 ? images : image ? [image] : [];
 
   const handlePrev = (e) => {
     e.stopPropagation();
     setCurrentImg((prev) => (prev === 0 ? mediaImages.length - 1 : prev - 1));
+    setCounterVisible(true);
   };
 
   const handleNext = (e) => {
     e.stopPropagation();
     setCurrentImg((prev) => (prev === mediaImages.length - 1 ? 0 : prev + 1));
+    setCounterVisible(true);
   };
 
   const handleKeyDown = (e) => {
@@ -61,14 +66,37 @@ export default function ProjectCard({ project, onClick, index = 0 }) {
       {/* Thumbnail area with top-right category tag */}
       <div className="project-card__thumb">
         {videoUrl ? (
-          <video
-            src={videoUrl}
-            controls
-            playsInline
-            preload="metadata"
-            className="project-card__video"
-            onClick={(e) => e.stopPropagation()}
-          />
+          showVideo ? (
+            <video
+              src={videoUrl}
+              controls
+              playsInline
+              preload="metadata"
+              autoPlay
+              className="project-card__video"
+              onClick={(e) => e.stopPropagation()}
+            />
+          ) : (
+            <div
+              className="project-card__video-cover"
+              onClick={(e) => { e.stopPropagation(); setShowVideo(true); }}
+              role="button"
+              tabIndex={0}
+              aria-label={`Play ${title} demo video`}
+              onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); e.stopPropagation(); setShowVideo(true); } }}
+            >
+              {videoCoverUrl ? (
+                <img src={videoCoverUrl} alt={`${title} video cover`} className="project-card__video-cover-img" />
+              ) : (
+                <div className="project-card__placeholder" aria-hidden="true">
+                  <FolderGit2 size={32} className="project-card__placeholder-icon" />
+                </div>
+              )}
+              <div className="project-card__play-btn" aria-hidden="true">
+                <Play size={22} />
+              </div>
+            </div>
+          )
         ) : mediaImages.length > 0 ? (
           <div className="project-card__gallery-wrap">
             <img
@@ -94,9 +122,11 @@ export default function ProjectCard({ project, onClick, index = 0 }) {
                 >
                   <ChevronRight size={16} />
                 </button>
-                <div className="project-card__counter">
-                  {currentImg + 1} / {mediaImages.length}
-                </div>
+                {counterVisible && (
+                  <div className="project-card__counter">
+                    {currentImg + 1} / {mediaImages.length}
+                  </div>
+                )}
               </>
             )}
           </div>

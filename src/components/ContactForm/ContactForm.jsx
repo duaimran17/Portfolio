@@ -1,11 +1,12 @@
-// src/components/ContactForm/ContactForm.jsx
-// Form structure with client-side validation and honest state reporting.
-// Ready to connect to Formspree, EmailJS, or custom backend when configured.
+﻿// src/components/ContactForm/ContactForm.jsx
+// Connects to Formspree for form submission. No backend required.
 
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Send, AlertCircle, Mail, Info, ArrowLeft } from 'lucide-react';
+import { Send, AlertCircle, CheckCircle2, XCircle } from 'lucide-react';
 import './ContactForm.css';
+
+const FORMSPREE_ENDPOINT = 'https://formspree.io/f/xqpkjnqq';
 
 const INITIAL_FORM = { name: '', email: '', subject: '', message: '' };
 const INITIAL_ERRORS = { name: '', email: '', subject: '', message: '' };
@@ -27,7 +28,8 @@ function validate(fields) {
 export default function ContactForm() {
   const [form, setForm] = useState(INITIAL_FORM);
   const [errors, setErrors] = useState(INITIAL_ERRORS);
-  const [status, setStatus] = useState('idle'); // 'idle' | 'validated'
+  const [status, setStatus] = useState('idle'); // 'idle' | 'sending' | 'success' | 'error'
+  const [serverError, setServerError] = useState('');
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -35,7 +37,7 @@ export default function ContactForm() {
     if (errors[name]) setErrors((prev) => ({ ...prev, [name]: '' }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     const validationErrors = validate(form);
@@ -45,55 +47,62 @@ export default function ContactForm() {
       return;
     }
 
-    // ─────────────────────────────────────────────────────────────
-    // TO CONNECT AN EMAIL SERVICE LATER (e.g. Formspree / EmailJS):
-    // Example:
-    // await fetch("https://formspree.io/f/YOUR_FORM_ID", {
-    //   method: "POST",
-    //   headers: { "Content-Type": "application/json" },
-    //   body: JSON.stringify(form)
-    // });
-    // ─────────────────────────────────────────────────────────────
+    setStatus('sending');
+    setServerError('');
 
-    // Honest handling: Form is validated, inform user that service is not configured yet.
-    setStatus('validated');
+    try {
+      const response = await fetch(FORMSPREE_ENDPOINT, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
+        },
+        body: JSON.stringify({
+          name: form.name,
+          email: form.email,
+          subject: form.subject,
+          message: form.message,
+        }),
+      });
+
+      if (response.ok) {
+        setStatus('success');
+        setForm(INITIAL_FORM);
+        setErrors(INITIAL_ERRORS);
+      } else {
+        const data = await response.json().catch(() => ({}));
+        const msg = data?.errors?.[0]?.message || 'Submission failed. Please try again.';
+        setServerError(msg);
+        setStatus('error');
+      }
+    } catch {
+      setServerError('Network error. Please check your connection and try again.');
+      setStatus('error');
+    }
   };
 
-  if (status === 'validated') {
-    const mailtoUrl = `mailto:duaimrann17@gmail.com?subject=${encodeURIComponent(form.subject)}&body=${encodeURIComponent(`Hi Dua,\n\n${form.message}\n\nFrom: ${form.name} (${form.email})`)}`;
-
+  if (status === 'success') {
     return (
       <motion.div
-        className="contact-form__validated-state"
+        className="contact-form__success-state"
         initial={{ opacity: 0, scale: 0.96 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.3 }}
       >
-        <div className="contact-form__info-badge">
-          <Info size={28} className="contact-form__info-icon" />
+        <div className="contact-form__success-icon-wrap">
+          <CheckCircle2 size={32} className="contact-form__success-icon" />
         </div>
-        <h3 className="contact-form__validated-title">Form Validated</h3>
-        <p className="contact-form__validated-text">
-          Automated email dispatch is not connected to a backend service yet.
-          Your message is ready — send it directly to my inbox with one click:
+        <h3 className="contact-form__success-title">Message Sent!</h3>
+        <p className="contact-form__success-text">
+          Thanks for reaching out. I&apos;ll get back to you as soon as possible.
         </p>
-
-        <div className="contact-form__validated-actions">
-          <a
-            href={mailtoUrl}
-            className="btn btn--primary contact-form__mailto-btn"
-          >
-            <Mail size={16} /> Open in Email App
-          </a>
-
-          <button
-            type="button"
-            className="btn btn--ghost contact-form__edit-btn"
-            onClick={() => setStatus('idle')}
-          >
-            <ArrowLeft size={15} /> Edit Details
-          </button>
-        </div>
+        <button
+          type="button"
+          className="btn btn--ghost contact-form__reset-btn"
+          onClick={() => setStatus('idle')}
+        >
+          Send Another Message
+        </button>
       </motion.div>
     );
   }
@@ -169,7 +178,7 @@ export default function ContactForm() {
           name="subject"
           type="text"
           className={`contact-form__input ${errors.subject ? 'contact-form__input--error' : ''}`}
-          placeholder="What's this about?"
+          placeholder="What is this about?"
           value={form.subject}
           onChange={handleChange}
           aria-describedby={errors.subject ? 'error-subject' : undefined}
@@ -198,7 +207,7 @@ export default function ContactForm() {
           name="message"
           rows={5}
           className={`contact-form__input contact-form__textarea ${errors.message ? 'contact-form__input--error' : ''}`}
-          placeholder="Write your message here…"
+          placeholder="Write your message here..."
           value={form.message}
           onChange={handleChange}
           aria-describedby={errors.message ? 'error-message' : undefined}
@@ -220,11 +229,36 @@ export default function ContactForm() {
         </AnimatePresence>
       </div>
 
+      <AnimatePresence>
+        {status === 'error' && serverError && (
+          <motion.div
+            className="contact-form__server-error"
+            role="alert"
+            initial={{ opacity: 0, y: -4 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -4 }}
+          >
+            <XCircle size={14} />
+            <span>{serverError}</span>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
       <button
         type="submit"
         className="btn btn--primary contact-form__submit"
+        disabled={status === 'sending'}
       >
-        <Send size={15} /> Send Message
+        {status === 'sending' ? (
+          <>
+            <span className="contact-form__spinner" aria-hidden="true" />
+            Sending...
+          </>
+        ) : (
+          <>
+            <Send size={15} /> Send Message
+          </>
+        )}
       </button>
     </form>
   );
