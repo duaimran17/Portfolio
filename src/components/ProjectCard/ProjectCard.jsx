@@ -1,13 +1,15 @@
 // src/components/ProjectCard/ProjectCard.jsx
-import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { ArrowUpRight, FolderGit2, ChevronLeft, ChevronRight, Play } from 'lucide-react';
+import { ArrowUpRight, FolderGit2 } from 'lucide-react';
 import { Github } from '../Icons';
 import './ProjectCard.css';
 
 /**
  * Entirely clickable card for a project.
  * Clicking anywhere on the card opens the project detail modal.
+ * The media area shows ONLY a static cover image — no gallery controls,
+ * no navigation arrows, no counter, no video player.
+ * Full media interaction is available inside ProjectModal.
  */
 export default function ProjectCard({ project, onClick, index = 0 }) {
   const {
@@ -17,7 +19,6 @@ export default function ProjectCard({ project, onClick, index = 0 }) {
     tags,
     image,
     images,
-    videoUrl,
     videoCoverUrl,
     categoryTag,
     githubUrl,
@@ -25,22 +26,12 @@ export default function ProjectCard({ project, onClick, index = 0 }) {
     contribution,
   } = project;
 
-  const [currentImg, setCurrentImg] = useState(0);
-  const [showVideo, setShowVideo] = useState(false);
-  const [counterVisible, setCounterVisible] = useState(false);
-  const mediaImages = images && images.length > 0 ? images : image ? [image] : [];
-
-  const handlePrev = (e) => {
-    e.stopPropagation();
-    setCurrentImg((prev) => (prev === 0 ? mediaImages.length - 1 : prev - 1));
-    setCounterVisible(true);
-  };
-
-  const handleNext = (e) => {
-    e.stopPropagation();
-    setCurrentImg((prev) => (prev === mediaImages.length - 1 ? 0 : prev + 1));
-    setCounterVisible(true);
-  };
+  // Resolve the single static cover image to display on the card.
+  // Priority: videoCoverUrl (for video projects) → first image in images[] → image → null
+  const coverImage = videoCoverUrl
+    || (images && images.length > 0 ? images[0] : null)
+    || image
+    || null;
 
   const handleKeyDown = (e) => {
     if (e.key === 'Enter' || e.key === ' ') {
@@ -63,72 +54,15 @@ export default function ProjectCard({ project, onClick, index = 0 }) {
       transition={{ duration: 0.45, delay: index * 0.08 }}
       whileHover={{ y: -5 }}
     >
-      {/* Thumbnail area with top-right category tag */}
+      {/* Thumbnail area — static cover image only */}
       <div className="project-card__thumb">
-        {videoUrl ? (
-          showVideo ? (
-            <video
-              src={videoUrl}
-              controls
-              playsInline
-              preload="metadata"
-              autoPlay
-              className="project-card__video"
-              onClick={(e) => e.stopPropagation()}
-            />
-          ) : (
-            <div
-              className="project-card__video-cover"
-              onClick={(e) => { e.stopPropagation(); setShowVideo(true); }}
-              role="button"
-              tabIndex={0}
-              aria-label={`Play ${title} demo video`}
-              onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); e.stopPropagation(); setShowVideo(true); } }}
-            >
-              {videoCoverUrl ? (
-                <img src={videoCoverUrl} alt={`${title} video cover`} className="project-card__video-cover-img" />
-              ) : (
-                <div className="project-card__placeholder" aria-hidden="true">
-                  <FolderGit2 size={32} className="project-card__placeholder-icon" />
-                </div>
-              )}
-              <div className="project-card__play-btn" aria-hidden="true">
-                <Play size={22} />
-              </div>
-            </div>
-          )
-        ) : mediaImages.length > 0 ? (
+        {coverImage ? (
           <div className="project-card__gallery-wrap">
             <img
-              src={mediaImages[currentImg]}
-              alt={`${title} preview ${currentImg + 1}`}
+              src={coverImage}
+              alt={`${title} cover`}
               loading="lazy"
             />
-            {mediaImages.length > 1 && (
-              <>
-                <button
-                  type="button"
-                  className="project-card__nav-btn project-card__nav-btn--prev"
-                  onClick={handlePrev}
-                  aria-label="Previous image"
-                >
-                  <ChevronLeft size={16} />
-                </button>
-                <button
-                  type="button"
-                  className="project-card__nav-btn project-card__nav-btn--next"
-                  onClick={handleNext}
-                  aria-label="Next image"
-                >
-                  <ChevronRight size={16} />
-                </button>
-                {counterVisible && (
-                  <div className="project-card__counter">
-                    {currentImg + 1} / {mediaImages.length}
-                  </div>
-                )}
-              </>
-            )}
           </div>
         ) : (
           <div className="project-card__placeholder" aria-hidden="true">

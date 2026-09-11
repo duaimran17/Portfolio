@@ -30,7 +30,7 @@ export default function Footer() {
 
         {/* Name */}
         <p className="footer__name">
-          Dua<span className="gradient-text">.</span>
+          Dua Imran<span className="gradient-text">.</span>
         </p>
 
         {/* Statement */}
