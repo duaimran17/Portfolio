@@ -38,12 +38,71 @@
 .project-card__thumb img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
-  transition: transform 0.5s ease;
+  object-fit: contain;
+  background: var(--bg-elevated);
+  transition: transform 0.4s ease;
 }
 
 .project-card:hover .project-card__thumb img {
-  transform: scale(1.04);
+  transform: scale(1.02);
+}
+
+.project-card__gallery-wrap {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.project-card__video {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  background: #000;
+  display: block;
+}
+
+/* Gallery Nav on Card */
+.project-card__nav-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.65);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 3;
+  opacity: 0.85;
+  transition: all var(--transition-fast);
+}
+
+.project-card__nav-btn:hover {
+  opacity: 1;
+  background: var(--accent-primary);
+  border-color: var(--accent-primary);
+  transform: translateY(-50%) scale(1.1);
+}
+
+.project-card__nav-btn--prev { left: 0.5rem; }
+.project-card__nav-btn--next { right: 0.5rem; }
+
+.project-card__counter {
+  position: absolute;
+  bottom: 0.5rem;
+  right: 0.5rem;
+  font-size: 0.65rem;
+  font-weight: 600;
+  color: #fff;
+  background: rgba(0, 0, 0, 0.65);
+  padding: 0.15rem 0.45rem;
+  border-radius: 9999px;
+  backdrop-filter: blur(4px);
+  z-index: 2;
 }
 
 /* Placeholder when no image */
@@ -103,6 +162,56 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+}
+
+.project-card__actions {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.project-card__github-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-size: 0.74rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-color);
+  padding: 0.2rem 0.55rem;
+  border-radius: var(--radius-xs);
+  text-decoration: none;
+  transition: all var(--transition-fast);
+}
+
+.project-card__github-btn:hover {
+  color: var(--accent-primary);
+  border-color: var(--accent-primary);
+  background: rgba(124, 58, 237, 0.08);
+}
+
+.project-card__meta-line {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.76rem;
+  font-weight: 600;
+  color: var(--accent-primary);
+  margin-top: -0.15rem;
+}
+
+.project-card__meta-company {
+  color: var(--accent-primary);
+}
+
+.project-card__meta-sep {
+  color: var(--text-muted);
+}
+
+.project-card__meta-contribution {
+  color: var(--text-secondary);
+  font-weight: 500;
 }
 
 .project-card__domain {

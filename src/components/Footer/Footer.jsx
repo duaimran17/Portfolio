@@ -1,13 +1,13 @@
 // src/components/Footer/Footer.jsx
-import { ArrowUp, Mail, MessageCircle } from 'lucide-react';
-import { Github, Linkedin } from '../Icons';
+import { ArrowUp, Mail } from 'lucide-react';
+import { Github, Linkedin, Discord } from '../Icons';
 import './Footer.css';
 
 const SOCIAL_LINKS = [
   { id: 'email',    icon: <Mail size={16} />,          href: 'mailto:duaimrann17@gmail.com', label: 'Email' },
   { id: 'linkedin', icon: <Linkedin size={16} />,      href: 'https://www.linkedin.com/in/duaimran17', label: 'LinkedIn' },
   { id: 'github',   icon: <Github size={16} />,        href: 'https://github.com/duaimran17', label: 'GitHub' },
-  { id: 'discord',  icon: <MessageCircle size={16} />, href: 'https://discord.com/users/duaimrann17', label: 'Discord' },
+  { id: 'discord',  icon: <Discord size={16} />,       href: 'https://discord.com/users/duaimrann17', label: 'Discord' },
 ];
 
 export default function Footer() {
@@ -35,7 +35,7 @@ export default function Footer() {
 
         {/* Statement */}
         <p className="footer__statement">
-          Aspiring AI & Software Developer · Learning and building one project at a time.
+          AI and Full-Stack Developer
         </p>
 
         {/* Social links */}
@@ -58,7 +58,7 @@ export default function Footer() {
 
         {/* Copyright */}
         <p className="footer__copy">
-          © {year} Dua Imran. Built with React & Vite.
+          © {year} Dua Imran.
         </p>
       </div>
     </footer>

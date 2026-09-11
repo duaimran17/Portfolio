@@ -1,6 +1,6 @@
 // src/data/skills.js
-// Edit this file to update the Skills section.
-// 'icon' corresponds to a Lucide icon component name.
+// Technical skills grouped by category.
+// No proficiency levels, strictly matching provided categories and technologies.
 
 export const skillCategories = [
   {
@@ -32,5 +32,11 @@ export const skillCategories = [
     label: "Tools",
     icon: "Wrench",
     skills: ["Git", "GitHub", "VS Code", "Blender"],
+  },
+  {
+    id: "deployment",
+    label: "Deployment",
+    icon: "Cloud",
+    skills: ["Vercel", "Git", "Netlify", "GitHub"],
   },
 ];

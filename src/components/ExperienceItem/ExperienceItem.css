@@ -3,10 +3,10 @@
 .exp-item {
   position: relative;
   padding-left: 1.75rem;
-  padding-bottom: 1.5rem;
+  padding-bottom: 1.25rem;
 }
 
-/* Vertical line */
+/* Vertical timeline line */
 .exp-item::before {
   content: '';
   position: absolute;
@@ -21,7 +21,7 @@
   display: none;
 }
 
-/* Dot */
+/* Timeline Dot */
 .exp-item__dot {
   position: absolute;
   left: 0;
@@ -39,7 +39,7 @@
   background: var(--card-bg);
   border: 1px solid var(--card-border);
   border-radius: var(--radius-md);
-  padding: 1rem 1.2rem;
+  padding: 0.95rem 1.15rem;
   box-shadow: var(--card-shadow);
   transition: all var(--transition-fast);
 }
@@ -56,7 +56,7 @@
   justify-content: space-between;
   align-items: flex-start;
   gap: 0.75rem;
-  margin-bottom: 0.35rem;
+  margin-bottom: 0.25rem;
 }
 
 .exp-item__title-group {
@@ -65,74 +65,137 @@
 }
 
 .exp-item__role {
-  font-size: 0.98rem;
+  font-size: 0.96rem;
   font-weight: 700;
   color: var(--text-primary);
-  line-height: 1.25;
+  line-height: 1.3;
 }
 
 .exp-item__org {
-  font-size: 0.84rem;
+  font-size: 0.82rem;
   font-weight: 600;
   color: var(--accent-primary);
-  margin-top: 0.15rem;
+  margin-top: 0.1rem;
+}
+
+.exp-item__project {
+  font-size: 0.82rem;
+  color: var(--text-secondary);
+  margin-top: 0.2rem;
+}
+
+.exp-item__project-label {
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-muted);
+  margin-right: 0.3rem;
+}
+
+/* Structured Sub-Roles (Merged Leadership Entry) */
+.exp-item__roles-structured {
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+  margin: 0.4rem 0 0.5rem;
+}
+
+.exp-item__role-entry {
+  padding-left: 0.75rem;
+  border-left: 2px solid rgba(124, 58, 237, 0.35);
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+
+.exp-item__role-line {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  flex-wrap: wrap;
+}
+
+.exp-item__subrole-title {
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.exp-item__subrole-arrow {
+  color: var(--accent-primary);
+  font-size: 0.82rem;
+  font-weight: 600;
+}
+
+.exp-item__subrole-entity {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--accent-primary);
+}
+
+.exp-item__subrole-desc {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  line-height: 1.5;
+  margin: 0.1rem 0 0;
 }
 
 /* Category Badge at Top Right */
 .exp-item__category-badge {
-  font-size: 0.68rem;
+  font-size: 0.65rem;
   font-weight: 700;
-  letter-spacing: 0.06em;
+  letter-spacing: 0.05em;
   text-transform: uppercase;
   color: var(--accent-primary);
   background: rgba(124, 58, 237, 0.08);
   border: 1px solid rgba(124, 58, 237, 0.2);
-  padding: 0.2rem 0.6rem;
+  padding: 0.18rem 0.55rem;
   border-radius: 9999px;
   white-space: nowrap;
   flex-shrink: 0;
 }
 
-/* Meta */
+/* Meta (Date / Location) */
 .exp-item__meta {
   display: flex;
   align-items: center;
-  gap: 0.85rem;
+  gap: 0.75rem;
   flex-wrap: wrap;
-  margin-bottom: 0.4rem;
+  margin-bottom: 0.35rem;
 }
 
 .exp-item__meta-item {
   display: inline-flex;
   align-items: center;
   gap: 0.3rem;
-  font-size: 0.75rem;
+  font-size: 0.74rem;
   color: var(--text-muted);
 }
 
-/* Description */
+/* Description / Supporting text */
 .exp-item__desc {
-  font-size: 0.84rem;
+  font-size: 0.83rem;
   color: var(--text-secondary);
-  line-height: 1.6;
-  margin: 0.35rem 0 0.5rem;
+  line-height: 1.55;
+  margin: 0.25rem 0 0.45rem;
 }
 
 /* Bullet list */
 .exp-item__list {
   display: flex;
   flex-direction: column;
-  gap: 0.3rem;
-  margin: 0.4rem 0;
+  gap: 0.25rem;
+  margin: 0.35rem 0;
 }
 
 .exp-item__list-item {
   display: flex;
   align-items: flex-start;
-  gap: 0.45rem;
-  font-size: 0.82rem;
+  gap: 0.4rem;
+  font-size: 0.8rem;
   color: var(--text-secondary);
-  line-height: 1.5;
+  line-height: 1.45;
 }
 
 .exp-item__bullet {
@@ -149,16 +212,16 @@
 .exp-item__tags {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.35rem;
-  margin-top: 0.65rem;
+  gap: 0.3rem;
+  margin-top: 0.5rem;
 }
 
 .exp-item__tag {
-  font-size: 0.72rem;
+  font-size: 0.7rem;
   font-weight: 500;
   color: var(--text-secondary);
   background: var(--bg-elevated);
   border: 1px solid var(--border-color);
-  padding: 0.15rem 0.5rem;
+  padding: 0.12rem 0.45rem;
   border-radius: 9999px;
 }

@@ -63,12 +63,100 @@
   aspect-ratio: 16 / 9;
   background: var(--bg-elevated);
   overflow: hidden;
+  position: relative;
 }
 
-.modal__media img {
+.modal__media img,
+.modal__gallery-img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
+  background: #0b0914;
+}
+
+.modal__video {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  background: #000;
+  display: block;
+}
+
+.modal__gallery {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.modal__gallery-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 3;
+  transition: all var(--transition-fast);
+}
+
+.modal__gallery-nav:hover {
+  background: var(--accent-primary);
+  border-color: var(--accent-primary);
+  transform: translateY(-50%) scale(1.1);
+}
+
+.modal__gallery-nav--prev { left: 0.85rem; }
+.modal__gallery-nav--next { right: 0.85rem; }
+
+.modal__gallery-counter {
+  position: absolute;
+  top: 0.85rem;
+  right: 0.85rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #fff;
+  background: rgba(0, 0, 0, 0.7);
+  padding: 0.2rem 0.6rem;
+  border-radius: 9999px;
+  backdrop-filter: blur(4px);
+  z-index: 2;
+}
+
+.modal__gallery-dots {
+  position: absolute;
+  bottom: 0.75rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 0.4rem;
+  z-index: 2;
+  background: rgba(0, 0, 0, 0.5);
+  padding: 0.25rem 0.5rem;
+  border-radius: 9999px;
+  backdrop-filter: blur(4px);
+}
+
+.modal__gallery-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.45);
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  transition: all var(--transition-fast);
+}
+
+.modal__gallery-dot--active {
+  background: var(--accent-primary);
+  transform: scale(1.3);
 }
 
 .modal__media iframe {
@@ -91,6 +179,12 @@
 
 .modal__media-placeholder span {
   font-size: var(--text-sm);
+}
+
+.modal__meta-sub {
+  font-size: var(--text-sm);
+  color: var(--accent-primary);
+  margin-top: 0.25rem;
 }
 
 /* Content area */

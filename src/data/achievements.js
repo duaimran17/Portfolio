@@ -1,60 +1,48 @@
 // src/data/achievements.js
-// Edit this file to update the Achievements section.
+// Curated achievements and verified certifications.
 
 export const achievements = [
   {
     id: 1,
-    title: "OOTA Competition — Runner-Up",
-    organization: "[Organizing Institution / Event]",
-    date: "[Year]",
-    description: "[Brief description of the competition and what you achieved.]",
+    title: "1st Runner Up | OOTA Game Jam",
+    category: "Game Jam / Competition",
+    description: "Placed top among 60+ competing development teams during a 48-hour hackathon.",
     icon: "Trophy",
-    category: "competition",
+    // Asset slot: point to image, render, or 3D asset path when ready
+    asset: null,
   },
   {
     id: 2,
-    title: "[Sports Achievement Title]",
-    organization: "[Club / University / Organization]",
-    date: "[Year]",
-    description: "[Brief description of the sport and your achievement.]",
+    title: "1st Runner Up | UCP Sports Gala",
+    category: "Athletics / University Gala",
+    description: "Won silver medals and trophies in both the Futsal and Throwball university tournaments.",
     icon: "Medal",
-    category: "sports",
-  },
-  {
-    id: 3,
-    title: "[Academic Achievement Title]",
-    organization: "[University / Institution]",
-    date: "[Year]",
-    description: "[Brief description.]",
-    icon: "GraduationCap",
-    category: "academic",
-  },
-  {
-    id: 4,
-    title: "[Hackathon / Technical Competition]",
-    organization: "[Organizer]",
-    date: "[Year]",
-    description: "[Brief description of the hackathon and your result.]",
-    icon: "Code2",
-    category: "competition",
+    honors: [
+      { label: "Medal", icon: "Medal" },
+      { label: "Trophy", icon: "Trophy" },
+    ],
+    // Asset slot: ready to connect medal, trophy, or 3D/decorative element assets
+    asset: null,
   },
 ];
 
 export const certificates = [
   {
     id: 1,
-    name: "[Certificate Name]",
-    issuer: "[Issuing Organization]",
-    date: "[Month Year]",
-    credentialUrl: null,   // Replace with the certificate verification URL
-    image: null,           // Replace with the certificate image path
+    name: "Python Data Structures",
+    institution: "University of Michigan",
+    platform: "Coursera",
   },
   {
     id: 2,
-    name: "[Certificate Name]",
-    issuer: "[Issuing Organization]",
-    date: "[Month Year]",
-    credentialUrl: null,
-    image: null,
+    name: "AWS Academy Graduate - Cloud Foundations",
+    institution: "AWS Academy",
+    platform: null,
+  },
+  {
+    id: 3,
+    name: "IEEE Membership Student International",
+    institution: "IEEE",
+    platform: null,
   },
 ];

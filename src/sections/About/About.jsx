@@ -1,6 +1,6 @@
 // src/sections/About/About.jsx
 import { motion } from 'framer-motion';
-import { GraduationCap, MapPin, Sparkles, Briefcase, Camera } from 'lucide-react';
+import { GraduationCap, MapPin, Sparkles } from 'lucide-react';
 import SectionTitle from '../../components/SectionTitle/SectionTitle';
 import './About.css';
 
@@ -14,46 +14,59 @@ export default function About() {
           subtitle="A quick snapshot of my journey, education, and current focus."
         />
 
+        {/* Modern availability status label */}
+        <motion.div
+          className="about__availability-wrapper"
+          initial={{ opacity: 0, y: 10 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: false, amount: 0.3 }}
+          transition={{ duration: 0.4 }}
+        >
+          <span className="about__availability-pill">
+            <span className="about__availability-dot" />
+            Available for new projects
+          </span>
+        </motion.div>
+
         <div className="about__grid">
-          {/* LEFT: Photo Placeholder Frame */}
+          {/* LEFT: Clean photo frame */}
           <motion.div
             className="about__photo-col"
-            initial={{ opacity: 0, scale: 0.94, y: 20 }}
+            initial={{ opacity: 0, scale: 0.95, y: 16 }}
             whileInView={{ opacity: 1, scale: 1, y: 0 }}
             viewport={{ once: false, amount: 0.25 }}
-            transition={{ duration: 0.5 }}
+            transition={{ duration: 0.45 }}
           >
-            <div className="about__photo-frame">
-              <div className="about__photo-inner">
-                <div className="about__photo-icon-box" aria-hidden="true">
-                  <Camera size={36} className="about__photo-icon" />
-                </div>
-                <span className="about__photo-text">[Add photo]</span>
-                <span className="about__photo-hint">Replace with your personal photo</span>
-              </div>
-
-              {/* Cute Floating status tag on the photo frame */}
-              <div className="about__photo-badge">
-                <span className="about__status-dot" />
-                <span>Open for work</span>
-              </div>
-            </div>
+            <motion.div
+              className="about__photo-frame"
+              animate={{ y: [0, -6, 0] }}
+              transition={{ repeat: Infinity, duration: 5, ease: 'easeInOut' }}
+              whileHover={{ scale: 1.02 }}
+            >
+              <img
+                src="/images/dua.jpeg"
+                alt="Dua Imran"
+                className="about__photo-img"
+              />
+            </motion.div>
           </motion.div>
 
           {/* RIGHT: About Details */}
           <motion.div
             className="about__content-col"
-            initial={{ opacity: 0, x: 24 }}
+            initial={{ opacity: 0, x: 20 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: false, amount: 0.25 }}
-            transition={{ duration: 0.5, delay: 0.1 }}
+            transition={{ duration: 0.45, delay: 0.08 }}
           >
-            {/* Genuine, grounded paragraph */}
+            {/* Prominent Hook Line */}
+            <p className="about__hook">
+              Turning <strong>big ideas</strong> into <em>interactive realities.</em>
+            </p>
+
+            {/* Authentic paragraph */}
             <p className="about__paragraph">
-              I'm Dua Imran, a Computer Science student with an active curiosity for how software
-              is crafted and how artificial intelligence can solve practical challenges. I enjoy building
-              clean, reliable projects, learning new tools through hands-on practice, and steadily
-              growing as a developer.
+              I, Dua Imran, a Computer Science undergrad based in Lahore building at the intersection of full-stack engineering and artificial intelligence. My sweet spot? Crafting interfaces that feel fast and lively, backed by intelligent, reliable systems under the hood. My work always aims for clear, scalable, and maintainable code. Beyond VS Code, you'll find me organizing university event tracks, staying active in competitive sports, and always looking out for the next interesting project or collaboration.
             </p>
 
             {/* Structured Info Cards */}
@@ -61,19 +74,19 @@ export default function About() {
               {/* Education */}
               <div className="about__info-pill-card">
                 <div className="about__card-icon" aria-hidden="true">
-                  <GraduationCap size={20} />
+                  <GraduationCap size={18} />
                 </div>
                 <div className="about__card-body">
-                  <span className="about__card-label">University</span>
+                  <span className="about__card-label">Education</span>
                   <p className="about__card-main">BS Computer Science</p>
-                  <p className="about__card-sub">University of Central Punjab · 2023 – Present</p>
+                  <p className="about__card-sub">University of Central Punjab · 2023 – 2027</p>
                 </div>
               </div>
 
               {/* Location */}
               <div className="about__info-pill-card">
                 <div className="about__card-icon" aria-hidden="true">
-                  <MapPin size={20} />
+                  <MapPin size={18} />
                 </div>
                 <div className="about__card-body">
                   <span className="about__card-label">Location</span>
@@ -82,9 +95,9 @@ export default function About() {
               </div>
 
               {/* Current Direction / Interests */}
-              <div className="about__info-pill-card">
+              <div className="about__info-pill-card about__info-pill-card--wide">
                 <div className="about__card-icon" aria-hidden="true">
-                  <Sparkles size={20} />
+                  <Sparkles size={18} />
                 </div>
                 <div className="about__card-body">
                   <span className="about__card-label">Interests & Focus</span>
@@ -92,17 +105,6 @@ export default function About() {
                     <span className="about__tag-pill">AI</span>
                     <span className="about__tag-pill">Full-Stack Development</span>
                   </div>
-                </div>
-              </div>
-
-              {/* Opportunities status */}
-              <div className="about__info-pill-card about__info-pill-card--highlight">
-                <div className="about__card-icon" aria-hidden="true">
-                  <Briefcase size={20} />
-                </div>
-                <div className="about__card-body">
-                  <span className="about__card-label">Opportunities</span>
-                  <p className="about__card-main">Open for internships, projects & collaborations</p>
                 </div>
               </div>
             </div>

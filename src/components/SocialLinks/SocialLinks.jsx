@@ -1,6 +1,6 @@
 // src/components/SocialLinks/SocialLinks.jsx
-import { Mail, MessageCircle } from 'lucide-react';
-import { Github, Linkedin } from '../Icons';
+import { Mail } from 'lucide-react';
+import { Github, Linkedin, Discord } from '../Icons';
 import { motion } from 'framer-motion';
 import './SocialLinks.css';
 
@@ -26,7 +26,7 @@ const SOCIAL_ITEMS = [
   {
     id: 'discord',
     label: 'Discord',
-    icon: <MessageCircle size={18} />,
+    icon: <Discord size={18} />,
     href: 'https://discord.com/users/duaimrann17',
   },
 ];

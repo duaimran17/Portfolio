@@ -1,13 +1,13 @@
 // src/components/SkillCard/SkillCard.jsx
 import { motion } from 'framer-motion';
 import {
-  Code2, Monitor, Server, Database, Wrench, Sparkles, Cpu,
+  Code2, Monitor, Server, Database, Wrench, Sparkles, Cpu, Cloud,
 } from 'lucide-react';
 import './SkillCard.css';
 
 // Map icon name strings from skills.js to actual Lucide components
 const ICON_MAP = {
-  Code2, Monitor, Server, Database, Wrench, Sparkles, Cpu,
+  Code2, Monitor, Server, Database, Wrench, Sparkles, Cpu, Cloud,
 };
 
 /**

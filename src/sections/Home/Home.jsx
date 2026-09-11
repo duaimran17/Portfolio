@@ -1,6 +1,6 @@
 // src/sections/Home/Home.jsx
 import { motion } from 'framer-motion';
-import { ArrowDown, Download, FolderOpen } from 'lucide-react';
+import { Mail, FolderOpen } from 'lucide-react';
 import SocialLinks from '../../components/SocialLinks/SocialLinks';
 import './Home.css';
 
@@ -84,7 +84,7 @@ export default function Home() {
           }}
         >
           <h2 className="home__title gradient-text">
-            Aspiring AI & Software Developer
+            AI & Full Stack Developer
           </h2>
         </motion.div>
 
@@ -117,16 +117,15 @@ export default function Home() {
             View Projects
           </motion.button>
 
-          <motion.a
-            href="/cv/Dua-Imran-CV.pdf"
-            download="Dua-Imran-CV.pdf"
+          <motion.button
             className="btn btn--outline home__cta"
+            onClick={() => scrollToSection('contact')}
             whileHover={{ scale: 1.04, y: -2 }}
             whileTap={{ scale: 0.96 }}
           >
-            <Download size={17} />
-            Download CV
-          </motion.a>
+            <Mail size={17} />
+            Contact Me
+          </motion.button>
         </motion.div>
 
         {/* Social Links */}
@@ -140,24 +139,6 @@ export default function Home() {
           <SocialLinks size="md" />
         </motion.div>
       </motion.div>
-
-      {/* Scroll indicator */}
-      <motion.button
-        className="home__scroll-indicator"
-        onClick={() => scrollToSection('about')}
-        aria-label="Scroll to About section"
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        viewport={{ once: false }}
-        transition={{ duration: 0.4 }}
-      >
-        <motion.div
-          animate={{ y: [0, 5, 0] }}
-          transition={{ repeat: Infinity, duration: 1.8, ease: 'easeInOut' }}
-        >
-          <ArrowDown size={18} />
-        </motion.div>
-      </motion.button>
     </section>
   );
 }

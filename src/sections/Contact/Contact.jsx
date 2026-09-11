@@ -1,7 +1,7 @@
 // src/sections/Contact/Contact.jsx
 import { motion } from 'framer-motion';
-import { Mail, MessageCircle } from 'lucide-react';
-import { Github, Linkedin } from '../../components/Icons';
+import { Mail } from 'lucide-react';
+import { Github, Linkedin, Discord } from '../../components/Icons';
 import SectionTitle from '../../components/SectionTitle/SectionTitle';
 import ContactForm from '../../components/ContactForm/ContactForm';
 import './Contact.css';
@@ -30,7 +30,7 @@ const CONTACT_ITEMS = [
   },
   {
     id: 'discord',
-    icon: <MessageCircle size={18} />,
+    icon: <Discord size={18} />,
     label: 'Discord',
     value: 'duaimrann17',
     href: 'https://discord.com/users/duaimrann17',
@@ -44,7 +44,7 @@ export default function Contact() {
         <SectionTitle
           eyebrow="Get In Touch"
           title="Contact Me"
-          subtitle="Have a question, opportunity, or project idea? Feel free to reach out directly."
+          subtitle="Have a project in mind, want to collaborate, or just want to say hi? I’d love to hear from you."
         />
 
         <div className="contact__layout">

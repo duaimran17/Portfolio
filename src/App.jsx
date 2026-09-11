@@ -4,16 +4,18 @@
 
 import { useTheme } from './hooks/useTheme';
 
-import Navbar     from './components/Navbar/Navbar';
-import Footer     from './components/Footer/Footer';
+import Navbar       from './components/Navbar/Navbar';
+import Footer       from './components/Footer/Footer';
 
-import Home       from './sections/Home/Home';
-import About      from './sections/About/About';
-import Experience from './sections/Experience/Experience';
-import Skills     from './sections/Skills/Skills';
-import Projects   from './sections/Projects/Projects';
-import CV         from './sections/CV/CV';
-import Contact    from './sections/Contact/Contact';
+import Home         from './sections/Home/Home';
+import About        from './sections/About/About';
+import Experience   from './sections/Experience/Experience';
+import Skills       from './sections/Skills/Skills';
+import Achievements from './sections/Achievements/Achievements';
+import Projects     from './sections/Projects/Projects';
+import KindWords    from './sections/KindWords/KindWords';
+import CV           from './sections/CV/CV';
+import Contact      from './sections/Contact/Contact';
 
 import './App.css';
 
@@ -29,7 +31,9 @@ export default function App() {
         <About />
         <Experience />
         <Skills />
+        <Achievements />
         <Projects />
+        <KindWords />
         <CV />
         <Contact />
       </main>
