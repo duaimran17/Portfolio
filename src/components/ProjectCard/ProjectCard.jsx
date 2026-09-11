@@ -26,12 +26,19 @@ export default function ProjectCard({ project, onClick, index = 0 }) {
     contribution,
   } = project;
 
+  // Percent-encode path segments so spaces in filenames (e.g. "HBM 1.png") don't break requests.
+  const encodeImgSrc = (src) =>
+    src
+      ? src.split('/').map((seg) => encodeURIComponent(seg)).join('/')
+      : src;
+
   // Resolve the single static cover image to display on the card.
   // Priority: videoCoverUrl (for video projects) → first image in images[] → image → null
-  const coverImage = videoCoverUrl
+  const rawCover = videoCoverUrl
     || (images && images.length > 0 ? images[0] : null)
     || image
     || null;
+  const coverImage = encodeImgSrc(rawCover);
 
   const handleKeyDown = (e) => {
     if (e.key === 'Enter' || e.key === ' ') {
@@ -62,6 +69,7 @@ export default function ProjectCard({ project, onClick, index = 0 }) {
               src={coverImage}
               alt={`${title} cover`}
               loading="lazy"
+              decoding="async"
             />
           </div>
         ) : (

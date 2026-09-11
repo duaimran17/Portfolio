@@ -10,6 +10,11 @@ import './ProjectModal.css';
  * Props:
  *   - project   {object|null}   the selected project, null = closed
  *   - onClose   {function}      close handler
+ *
+ * Media rendering rules:
+ *   - Image-only projects (HBM, Blender): full gallery with nav arrows + dots.
+ *   - Video projects (SHINE Notes): cover image (web.png) shown first,
+ *     then the playable video below it — not an either/or.
  */
 export default function ProjectModal({ project, onClose }) {
   const [activeSlide, setActiveSlide] = useState(0);
@@ -38,11 +43,28 @@ export default function ProjectModal({ project, onClose }) {
     };
   }, [project, handleKeyDown]);
 
-  const images = project?.images && project.images.length > 0
-    ? project.images
-    : project?.image
-    ? [project.image]
-    : [];
+  /**
+   * Percent-encode each path segment so that filenames containing spaces
+   * (e.g. "/images/HBM 1.png", "/images/3d 1.png") are requested correctly
+   * by the browser without a 404.
+   */
+  const encodeImgSrc = (src) => {
+    if (!src) return src;
+    return src
+      .split('/')
+      .map((seg) => encodeURIComponent(seg))
+      .join('/');
+  };
+
+  // Build the encoded image list for the gallery
+  const rawImages =
+    project?.images && project.images.length > 0
+      ? project.images
+      : project?.image
+      ? [project.image]
+      : [];
+
+  const images = rawImages.map(encodeImgSrc);
 
   return (
     <AnimatePresence>
@@ -80,16 +102,24 @@ export default function ProjectModal({ project, onClose }) {
             </button>
 
             <div className="modal__scroll-area">
-              {/* Media: video or image gallery */}
+              {/* ── Media ── */}
               <div className="modal__media">
                 {project.videoUrl ? (
+                  /*
+                   * SHINE Notes: the video alone fills the 16:9 container.
+                   * web.png is shown above (outside this box) so it isn't clipped.
+                   */
                   <video
                     src={project.videoUrl}
                     controls
                     playsInline
+                    preload="metadata"
                     className="modal__video"
                   />
                 ) : images.length > 0 ? (
+                  /*
+                   * HBM / Blender: image gallery with prev/next arrows and dots.
+                   */
                   <div className="modal__gallery">
                     <img
                       src={images[activeSlide]}
@@ -101,7 +131,12 @@ export default function ProjectModal({ project, onClose }) {
                         <button
                           type="button"
                           className="modal__gallery-nav modal__gallery-nav--prev"
-                          onClick={() => { setActiveSlide((prev) => (prev === 0 ? images.length - 1 : prev - 1)); setCounterVisible(true); }}
+                          onClick={() => {
+                            setActiveSlide((prev) =>
+                              prev === 0 ? images.length - 1 : prev - 1
+                            );
+                            setCounterVisible(true);
+                          }}
                           aria-label="Previous image"
                         >
                           <ChevronLeft size={22} />
@@ -109,7 +144,12 @@ export default function ProjectModal({ project, onClose }) {
                         <button
                           type="button"
                           className="modal__gallery-nav modal__gallery-nav--next"
-                          onClick={() => { setActiveSlide((prev) => (prev === images.length - 1 ? 0 : prev + 1)); setCounterVisible(true); }}
+                          onClick={() => {
+                            setActiveSlide((prev) =>
+                              prev === images.length - 1 ? 0 : prev + 1
+                            );
+                            setCounterVisible(true);
+                          }}
                           aria-label="Next image"
                         >
                           <ChevronRight size={22} />
@@ -124,7 +164,11 @@ export default function ProjectModal({ project, onClose }) {
                             <button
                               key={i}
                               type="button"
-                              className={`modal__gallery-dot ${i === activeSlide ? 'modal__gallery-dot--active' : ''}`}
+                              className={`modal__gallery-dot ${
+                                i === activeSlide
+                                  ? 'modal__gallery-dot--active'
+                                  : ''
+                              }`}
                               onClick={() => setActiveSlide(i)}
                               aria-label={`Slide ${i + 1}`}
                             />
@@ -141,7 +185,7 @@ export default function ProjectModal({ project, onClose }) {
                 )}
               </div>
 
-              {/* Content */}
+              {/* ── Content ── */}
               <div className="modal__content">
                 {/* Header */}
                 <div className="modal__header">
@@ -151,23 +195,28 @@ export default function ProjectModal({ project, onClose }) {
                     {(project.company || project.contribution) && (
                       <p className="modal__meta-sub">
                         {project.company && <strong>{project.company}</strong>}
-                        {project.company && project.contribution && <span> · </span>}
-                        {project.contribution && <span>{project.contribution}</span>}
+                        {project.company && project.contribution && (
+                          <span> · </span>
+                        )}
+                        {project.contribution && (
+                          <span>{project.contribution}</span>
+                        )}
                       </p>
                     )}
                   </div>
                   <div className="modal__actions">
-                    {project.githubUrl && !project.githubUrl.startsWith('[') && (
-                      <a
-                        href={project.githubUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="btn btn--ghost modal__action-btn"
-                        aria-label="View GitHub repository"
-                      >
-                        <Github size={16} /> GitHub
-                      </a>
-                    )}
+                    {project.githubUrl &&
+                      !project.githubUrl.startsWith('[') && (
+                        <a
+                          href={project.githubUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="btn btn--ghost modal__action-btn"
+                          aria-label="View GitHub repository"
+                        >
+                          <Github size={16} /> GitHub
+                        </a>
+                      )}
                     {project.liveUrl && (
                       <a
                         href={project.liveUrl}
@@ -202,7 +251,9 @@ export default function ProjectModal({ project, onClose }) {
                     <h3 className="modal__section-title">Tech stack</h3>
                     <div className="modal__tags">
                       {project.tags.map((tag) => (
-                        <span key={tag} className="modal__tag">{tag}</span>
+                        <span key={tag} className="modal__tag">
+                          {tag}
+                        </span>
                       ))}
                     </div>
                   </section>
