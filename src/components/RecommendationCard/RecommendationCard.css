@@ -1,0 +1,111 @@
+/* src/components/RecommendationCard/RecommendationCard.css */
+
+.rec-card {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-2xl);
+  box-shadow: var(--card-shadow);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+.rec-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: var(--accent-gradient);
+}
+
+.rec-card__quote-icon {
+  color: var(--accent-primary);
+  opacity: 0.35;
+  flex-shrink: 0;
+}
+
+.rec-card__text {
+  flex: 1;
+  font-size: var(--text-base);
+  font-style: italic;
+  color: var(--text-secondary);
+  line-height: 1.8;
+}
+
+.rec-card__text p {
+  color: inherit;
+}
+
+.rec-card__author {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  padding-top: var(--space-md);
+  border-top: 1px solid var(--border-color);
+}
+
+.rec-card__avatar {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  overflow: hidden;
+  flex-shrink: 0;
+  background: var(--accent-gradient);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.rec-card__avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.rec-card__avatar-initials {
+  font-size: var(--text-sm);
+  font-weight: 700;
+  color: white;
+}
+
+.rec-card__info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+}
+
+.rec-card__name {
+  font-size: var(--text-sm);
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.rec-card__role {
+  font-size: var(--text-xs);
+  color: var(--text-muted);
+}
+
+.rec-card__linkedin {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: var(--radius-full);
+  border: 1.5px solid var(--border-color);
+  color: var(--text-muted);
+  transition: color var(--transition-fast), border-color var(--transition-fast);
+  flex-shrink: 0;
+}
+
+.rec-card__linkedin:hover {
+  color: #0a66c2;
+  border-color: #0a66c2;
+}

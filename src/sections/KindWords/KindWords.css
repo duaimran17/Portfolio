@@ -1,0 +1,73 @@
+/* src/sections/KindWords/KindWords.css */
+
+.kind-words__empty {
+  text-align: center;
+  color: var(--text-muted);
+  font-size: var(--text-lg);
+  padding: var(--space-3xl) 0;
+}
+
+.kind-words__carousel {
+  max-width: 720px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xl);
+}
+
+.kind-words__stage {
+  position: relative;
+  min-height: 280px;
+  overflow: hidden;
+}
+
+.kind-words__slide {
+  width: 100%;
+}
+
+/* Controls */
+.kind-words__controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-md);
+}
+
+.kind-words__nav-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-full);
+  border: 1.5px solid var(--border-color);
+  background: var(--bg-elevated);
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.kind-words__nav-btn:hover {
+  border-color: var(--accent-primary);
+  color: var(--accent-primary);
+}
+
+.kind-words__dots {
+  display: flex;
+  gap: 0.4rem;
+}
+
+.kind-words__dot {
+  width: 8px;
+  height: 8px;
+  border-radius: var(--radius-full);
+  background: var(--border-color);
+  border: none;
+  cursor: pointer;
+  transition: background var(--transition-base), width var(--transition-base);
+}
+
+.kind-words__dot--active {
+  background: var(--accent-primary);
+  width: 22px;
+}
