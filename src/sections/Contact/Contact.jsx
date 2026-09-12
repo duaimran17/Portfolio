@@ -32,8 +32,8 @@ const CONTACT_ITEMS = [
     id: 'discord',
     icon: <Discord size={18} />,
     label: 'Discord',
-    value: 'duaimrann17',
-    href: 'https://discord.com/users/duaimrann17',
+    value: 'duaimran17',
+    href: 'https://discord.com/users/duaimran17',
   },
 ];
 
