@@ -1,6 +1,14 @@
-# 🎀 Dua Imran — Personal Developer Portfolio
+# 🎀 Dua Imran
 
-[![Live Portfolio](https://img.shields.io/badge/Website-Live_Demo-brightgreen?style=for-the-badge)](https://portfolio-duaimran.vercel.app/)
+### AI & Full-Stack Developer
+
+> Building thoughtful interfaces, reliable systems, and projects that turn ideas into something you can actually use.
+
+<p align="center">
+  <a href="https://portfolio-duaimran.vercel.app/">
+    <img src="https://img.shields.io/badge/✦%20Visit%20My%20Portfolio-portfolio--duaimran.vercel.app-8B5CF6?style=for-the-badge&labelColor=1F1F1F" alt="Visit My Portfolio">
+  </a>
+</p>
 
 Welcome to the official repository for my personal developer portfolio! This platform highlights my journey as a **Full-Stack AI Engineer**, combining frontend user interfaces with solid web architectures, full-stack applications, and machine learning models.
 

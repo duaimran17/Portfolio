@@ -37,18 +37,13 @@ export default function About() {
             viewport={{ once: false, amount: 0.25 }}
             transition={{ duration: 0.45 }}
           >
-            <motion.div
-              className="about__photo-frame"
-              animate={{ y: [0, -6, 0] }}
-              transition={{ repeat: Infinity, duration: 5, ease: 'easeInOut' }}
-              whileHover={{ scale: 1.02 }}
-            >
+            <div className="about__photo-frame">
               <img
                 src="/images/dua.jpeg"
                 alt="Dua Imran"
                 className="about__photo-img"
               />
-            </motion.div>
+            </div>
           </motion.div>
 
           {/* RIGHT: About Details */}

@@ -30,8 +30,7 @@ export default function CV() {
           <div className="cv__content">
             <h2 className="cv__name">Dua Imran — CV</h2>
             <p className="cv__desc">
-              A summary of my education, academic milestones, technical projects, and leadership roles.
-              Available as a PDF document for online preview or direct download.
+              A concise overview of my education, experience, projects, skills, and achievements.
             </p>
 
             <div className="cv__actions">

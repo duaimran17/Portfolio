@@ -57,7 +57,7 @@ export default function Contact() {
             transition={{ duration: 0.45 }}
           >
             <p className="contact__intro">
-              Have a project in mind, want to collaborate, or just want to say hi? I&apos;d love to hear from you.
+              Good ideas usually start with a conversation.
             </p>
 
             <div className="contact__links">
