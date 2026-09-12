@@ -27,7 +27,7 @@ const SOCIAL_ITEMS = [
     id: 'discord',
     label: 'Discord',
     icon: <Discord size={18} />,
-    href: 'https://discord.com/users/duaimrann17',
+    href: 'https://discord.com/users/duaimran17',
   },
 ];
 

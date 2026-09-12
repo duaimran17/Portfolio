@@ -4,10 +4,10 @@ import { Github, Linkedin, Discord } from '../Icons';
 import './Footer.css';
 
 const SOCIAL_LINKS = [
-  { id: 'email',    icon: <Mail size={16} />,          href: 'mailto:duaimrann17@gmail.com', label: 'Email' },
-  { id: 'linkedin', icon: <Linkedin size={16} />,      href: 'https://www.linkedin.com/in/duaimran17', label: 'LinkedIn' },
-  { id: 'github',   icon: <Github size={16} />,        href: 'https://github.com/duaimran17', label: 'GitHub' },
-  { id: 'discord',  icon: <Discord size={16} />,       href: 'https://discord.com/users/duaimrann17', label: 'Discord' },
+  { id: 'email', icon: <Mail size={16} />, href: 'mailto:duaimrann17@gmail.com', label: 'Email' },
+  { id: 'linkedin', icon: <Linkedin size={16} />, href: 'https://www.linkedin.com/in/duaimran17', label: 'LinkedIn' },
+  { id: 'github', icon: <Github size={16} />, href: 'https://github.com/duaimran17', label: 'GitHub' },
+  { id: 'discord', icon: <Discord size={16} />, href: 'https://discord.com/users/duaimran17', label: 'Discord' },
 ];
 
 export default function Footer() {
