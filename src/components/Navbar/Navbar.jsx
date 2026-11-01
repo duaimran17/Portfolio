@@ -155,8 +155,8 @@ export default function Navbar({ theme, onToggle }) {
           <ThemeToggle theme={theme} onToggle={onToggle} />
 
           <a
-            href="/cv/Dua-Imran-CV.pdf"
-            download="Dua-Imran-CV.pdf"
+            href="/cv/Dua's%20CV.pdf"
+            download="Dua's CV.pdf"
             className="navbar-pill__cv-btn"
             aria-label="Download CV"
             title="Download CV"
@@ -229,8 +229,8 @@ export default function Navbar({ theme, onToggle }) {
                 transition={{ delay: (SECTION_LINKS.length + 1) * 0.03 }}
               >
                 <a
-                  href="/cv/Dua-Imran-CV.pdf"
-                  download="Dua-Imran-CV.pdf"
+                  href="/cv/Dua's%20CV.pdf"
+                  download="Dua's CV.pdf"
                   className="navbar-mobile-card__cv"
                   onClick={() => setMobileOpen(false)}
                 >

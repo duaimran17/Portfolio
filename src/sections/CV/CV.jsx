@@ -4,7 +4,7 @@ import { Eye, Download, FileText } from 'lucide-react';
 import SectionTitle from '../../components/SectionTitle/SectionTitle';
 import './CV.css';
 
-const CV_PATH = '/cv/Dua-Imran-CV.pdf';
+const CV_PATH = "/cv/Dua's%20CV.pdf";
 
 export default function CV() {
   return (
@@ -49,7 +49,7 @@ export default function CV() {
 
               <motion.a
                 href={CV_PATH}
-                download="Dua-Imran-CV.pdf"
+                download="Dua's CV.pdf"
                 className="btn btn--outline"
                 whileHover={{ scale: 1.04 }}
                 whileTap={{ scale: 0.96 }}
