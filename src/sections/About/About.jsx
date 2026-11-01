@@ -1,6 +1,6 @@
 // src/sections/About/About.jsx
 import { motion } from 'framer-motion';
-import { GraduationCap, MapPin, Sparkles } from 'lucide-react';
+import { Sparkles } from 'lucide-react';
 import SectionTitle from '../../components/SectionTitle/SectionTitle';
 import './About.css';
 
@@ -39,7 +39,7 @@ export default function About() {
           >
             <div className="about__photo-frame">
               <img
-                src="/images/dua.jpeg"
+                src="/images/dua2.JPG"
                 alt="Dua Imran"
                 className="about__photo-img"
               />
@@ -56,49 +56,36 @@ export default function About() {
           >
             {/* Prominent Hook Line */}
             <p className="about__hook">
-              Turning <strong>big ideas</strong> into <em>interactive realities.</em>
+              <strong>My journey so far</strong>
             </p>
 
             {/* Authentic paragraph */}
             <p className="about__paragraph">
-              I, Dua Imran, a Computer Science undergrad based in Lahore building at the intersection of full-stack engineering and artificial intelligence. My sweet spot? Crafting interfaces that feel fast and lively, backed by intelligent, reliable systems under the hood. My work always aims for clear, scalable, and maintainable code. Beyond VS Code, you'll find me organizing university event tracks, staying active in competitive sports, and always looking out for the next interesting project or collaboration.
+              I'm Dua Imran, a CS undergrad (final year) at the University
+              of Central Punjab, focused on artificial intelligence and data science.
+              I work with Python, Pandas, and NumPy to build the foundations of
+              intelligent systems, and I develop full-stack applications using React
+              and the MERN stack with REST API integration.
+              <br />
+              Through my involvement in university societies, where I organize events
+              and coordinate teams, I have developed strong leadership, collaboration,
+              and time management skills. I am continuously exploring emerging AI
+              technologies and working toward becoming a capable AI Engineer.
             </p>
 
-            {/* Structured Info Cards */}
+            {/* Services Card — full width */}
             <div className="about__cards">
-              {/* Education */}
-              <div className="about__info-pill-card">
-                <div className="about__card-icon" aria-hidden="true">
-                  <GraduationCap size={18} />
-                </div>
-                <div className="about__card-body">
-                  <span className="about__card-label">Education</span>
-                  <p className="about__card-main">BS Computer Science</p>
-                  <p className="about__card-sub">University of Central Punjab · 2023 – 2027</p>
-                </div>
-              </div>
-
-              {/* Location */}
-              <div className="about__info-pill-card">
-                <div className="about__card-icon" aria-hidden="true">
-                  <MapPin size={18} />
-                </div>
-                <div className="about__card-body">
-                  <span className="about__card-label">Location</span>
-                  <p className="about__card-main">Lahore, Pakistan</p>
-                </div>
-              </div>
-
-              {/* Current Direction / Interests */}
               <div className="about__info-pill-card about__info-pill-card--wide">
                 <div className="about__card-icon" aria-hidden="true">
                   <Sparkles size={18} />
                 </div>
                 <div className="about__card-body">
-                  <span className="about__card-label">Interests & Focus</span>
+                  <span className="about__card-label">Services</span>
                   <div className="about__tag-pills">
-                    <span className="about__tag-pill">AI</span>
-                    <span className="about__tag-pill">Full-Stack Development</span>
+                    <span className="about__tag-pill">Frontend Development</span>
+                    <span className="about__tag-pill">Full-Stack Web Apps (MERN)</span>
+                    <span className="about__tag-pill">AI &amp; Data Science</span>
+                    <span className="about__tag-pill">REST API Integration</span>
                   </div>
                 </div>
               </div>

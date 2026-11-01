@@ -87,8 +87,12 @@ export default function ExperienceItem({ experience, index = 0 }) {
               <div key={i} className="exp-item__role-entry">
                 <div className="exp-item__role-line">
                   <span className="exp-item__subrole-title">{r.role}</span>
-                  <span className="exp-item__subrole-arrow" aria-hidden="true">→</span>
-                  <span className="exp-item__subrole-entity">{r.organization || r.event}</span>
+                  {(r.organization || r.event) && (
+                    <>
+                      <span className="exp-item__subrole-arrow" aria-hidden="true">→</span>
+                      <span className="exp-item__subrole-entity">{r.organization || r.event}</span>
+                    </>
+                  )}
                 </div>
                 {r.description && (
                   <p className="exp-item__subrole-desc">{r.description}</p>

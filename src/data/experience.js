@@ -33,28 +33,26 @@ export const experiences = [
   },
   {
     id: 3,
-    role: "Society Leadership & Technical Events",
-    organization: "IEEE UCP Student Branch & National Competitions",
+    role: "IEEE UCP Student Branch",
     categoryTag: "LEADERSHIP",
     roles: [
       {
         role: "Joint Secretary",
-        organization: "IEEE UCP Student Branch",
-        description: "Official society hierarchy leadership role: helping organize and manage society activities, hosting webinars including sessions related to AI and Agentics, and supporting technical event planning, coordination, communication, and execution.",
+        organization: "",
+        description: "Helped organize society activities and hosted webinars on AI and Agentics.",
       },
       {
         role: "Co-Director",
-        event: "IEEE Techathon 2.0",
-        description: "Intra-university and external-university technical event featuring 11 competitions across 4 major categories. Coordinated technical events, external university participation, coding competitions, and organized and supported 2 robotics competitions.",
+        event: "Techathon 2.0",
+        description: "Co-led an intra- and inter-university technical event with 11 competitions across 4 categories, including 2 robotics competitions.",
       },
       {
         role: "Organizer",
         event: "Taakra (National-Level Competition)",
-        description: "Supported event management, logistics, and technical competition coordination for this flagship national-level event.",
+        description: "Managed logistics and technical coordination for a national-level competition.",
       },
     ],
     tags: [
-      "IEEE",
       "Leadership",
       "Techathon 2.0",
       "Taakra",
@@ -87,12 +85,5 @@ export const experiences = [
     description: "Placed top among 60+ competing development teams during a 48-hour hackathon.",
     tags: ["Hackathon", "Game Jam"],
   },
-  {
-    id: 9,
-    role: "1st Runner Up",
-    event: "UCP Sports Gala",
-    categoryTag: "ACHIEVEMENT",
-    description: "Won silver medals and trophies in both the Futsal and Throwball university tournaments.",
-    tags: ["Futsal", "Throwball", "Sports", "Medal", "Trophy"],
-  },
+
 ];
